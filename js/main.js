@@ -1,129 +1,135 @@
 let activityData = [
   {
-    "title": "Work",
-    "id": "work",
-    "timeframes": {
-      "daily": {
-        "current": 5,
-        "previous": 7
+    title: "Work",
+    id: "work",
+    timeframes: {
+      daily: {
+        current: 5,
+        previous: 7,
       },
-      "weekly": {
-        "current": 32,
-        "previous": 36
+      weekly: {
+        current: 32,
+        previous: 36,
       },
-      "monthly": {
-        "current": 103,
-        "previous": 128
-      }
-    }
+      monthly: {
+        current: 103,
+        previous: 128,
+      },
+    },
   },
   {
-    "title": "Play",
-    "id": "play",
-    "timeframes": {
-      "daily": {
-        "current": 1,
-        "previous": 2
+    title: "Play",
+    id: "play",
+    timeframes: {
+      daily: {
+        current: 1,
+        previous: 2,
       },
-      "weekly": {
-        "current": 10,
-        "previous": 8
+      weekly: {
+        current: 10,
+        previous: 8,
       },
-      "monthly": {
-        "current": 23,
-        "previous": 29
-      }
-    }
+      monthly: {
+        current: 23,
+        previous: 29,
+      },
+    },
   },
   {
-    "title": "Study",
-    "id": "study",
-    "timeframes": {
-      "daily": {
-        "current": 0,
-        "previous": 1
+    title: "Study",
+    id: "study",
+    timeframes: {
+      daily: {
+        current: 0,
+        previous: 1,
       },
-      "weekly": {
-        "current": 4,
-        "previous": 7
+      weekly: {
+        current: 4,
+        previous: 7,
       },
-      "monthly": {
-        "current": 13,
-        "previous": 19
-      }
-    }
+      monthly: {
+        current: 13,
+        previous: 19,
+      },
+    },
   },
   {
-    "title": "Exercise",
-    "id": "exercise",
-    "timeframes": {
-      "daily": {
-        "current": 1,
-        "previous": 1
+    title: "Exercise",
+    id: "exercise",
+    timeframes: {
+      daily: {
+        current: 1,
+        previous: 1,
       },
-      "weekly": {
-        "current": 4,
-        "previous": 5
+      weekly: {
+        current: 4,
+        previous: 5,
       },
-      "monthly": {
-        "current": 11,
-        "previous": 18
-      }
-    }
+      monthly: {
+        current: 11,
+        previous: 18,
+      },
+    },
   },
   {
-    "title": "Social",
-    "id": "social",
-    "timeframes": {
-      "daily": {
-        "current": 1,
-        "previous": 3
+    title: "Social",
+    id: "social",
+    timeframes: {
+      daily: {
+        current: 1,
+        previous: 3,
       },
-      "weekly": {
-        "current": 5,
-        "previous": 10
+      weekly: {
+        current: 5,
+        previous: 10,
       },
-      "monthly": {
-        "current": 21,
-        "previous": 23
-      }
-    }
+      monthly: {
+        current: 21,
+        previous: 23,
+      },
+    },
   },
   {
-    "title": "Self Care",
-    "id": "self-care",
-    "timeframes": {
-      "daily": {
-        "current": 0,
-        "previous": 1
+    title: "Self Care",
+    id: "self-care",
+    timeframes: {
+      daily: {
+        current: 0,
+        previous: 1,
       },
-      "weekly": {
-        "current": 2,
-        "previous": 2
+      weekly: {
+        current: 2,
+        previous: 2,
       },
-      "monthly": {
-        "current": 7,
-        "previous": 11
-      }
-    }
-  }
-]
+      monthly: {
+        current: 7,
+        previous: 11,
+      },
+    },
+  },
+];
 
 let user = {
-    name: "Jeremy Robson",
-    imageUrl: "./images/image-jeremy.png",
-}
+  name: "Jeremy Robson",
+  imageUrl: "./images/image-jeremy.png",
+};
 
 const mainContainer = document.getElementById("main-container");
-const daily = document.getElementById('daily');
-const weekly = document.getElementById('weekly');
-const monthly = document.getElementById('monthly');
+const daily = document.getElementById("daily");
+const weekly = document.getElementById("weekly");
+const monthly = document.getElementById("monthly");
 
 let defaultTimeframe = "daily";
 
+// Utility functuin to remove the active class from all the frequency elements
+function removeActiveClassAll(elements) {
+  for (let element of elements) {
+    element.classList.remove("active");
+  }
+}
+
 function renderData(timeframe) {
-    mainContainer.innerHTML =
-        `
+  mainContainer.innerHTML = `
         <div class="user-card">
                 <section class="user-info-container">
                 <div class="user-image">
@@ -137,16 +143,18 @@ function renderData(timeframe) {
                 <section class="frequency-container">
                 <ul>
                     <li id="daily" class="frequency" onClick="renderData('daily')">Daily</li>
-                    <li id="weekly" class="frequency active" onClick="renderData('weekly')">Weekly</li>
+                    <li id="weekly" class="frequency" onClick="renderData('weekly')">Weekly</li>
                     <li id="monthly" class="frequency" onClick="renderData('monthly')">Monthly</li>
                 </ul>
                 </section>
             </div>
         `;
 
-    activityData.forEach(obj => {
-    mainContainer.innerHTML +=
-        `
+  removeActiveClassAll(document.getElementsByClassName("frequency"));
+  document.getElementById(timeframe).classList.add("active");
+
+  activityData.forEach((obj) => {
+    mainContainer.innerHTML += `
             <div class="activity-card" id="${obj.id}">
                     <div class="box">
                     <div class="title">
@@ -164,9 +172,7 @@ function renderData(timeframe) {
                     </div>
             </div>
         `;
-    });
+  });
 }
 
 renderData(defaultTimeframe);
-
-

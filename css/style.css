@@ -121,8 +121,10 @@ body {
   color: var(--desaturated_blue);
 }
 
-.frequency.active {
+.frequency.active,
+.frequency:hover {
   color: var(--white);
+  cursor: pointer;
 }
 
 #work {
